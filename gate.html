@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            margin: 0; background: #111; color: white;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; font-family: sans-serif;
+        }
+        .continue-btn {
+            background: #0088cc; border: none; padding: 20px 40px;
+            color: white; font-size: 20px; font-weight: bold;
+            border-radius: 15px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- এই বাটনটি প্রথমে দেখা যাবে -->
+    <button class="continue-btn" onclick="openMainApp()">CONTINUE ➡️</button>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+
+        function openMainApp() {
+            // এটি ক্লিক করলে আপনার আসল লিংকে নিয়ে যাবে (একই উইন্ডোতে)
+            const mainLink = "https://rony90790.github.io/View-code-button-CHEK-/";
+            window.location.replace(mainLink);
+        }
+    </script>
+</body>
+</html>
