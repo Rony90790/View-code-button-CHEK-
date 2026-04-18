@@ -1,25 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Redirecting...</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f7f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0088cc;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h2 { margin: 10px 0; font-size: 20px; }
+        p { color: #666; font-size: 14px; }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #0088cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
+
+    <div class="container">
+        <div class="loader"></div>
+        <h2>Connecting to Telegram...</h2>
+        <p>Please wait while we open your Service Notifications.</p>
+        
+        <!-- যদি অটোমেটিক না হয় তবে ইউজার এখানে ক্লিক করতে পারবে -->
+        <a href="tg://openmessage?user_id=777000" class="btn">Open Chat Manually</a>
+    </div>
+
     <script>
         window.onload = function() {
-            // মেথড ১: সরাসরি ইউজার আইডি দিয়ে চ্যাট ওপেন করা
+            // আপনার সফল হওয়া সেই ১ নম্বর মেথড
             window.location.href = "tg://openmessage?user_id=777000";
 
+            // ব্রাউজার যদি অটো-রিডাইরেক্ট ব্লক করে, তবে ৫ সেকেন্ড পর বাটনটি হাইলাইট হবে
+            setTimeout(function() {
+                console.log("If redirect fails, user can click the button.");
+            }, 5000);
         };
     </script>
-    <div style="text-align: center; margin-top: 100px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-        <h2 style="color: #333;">Connecting to Service Notifications...</h2>
-        <p style="color: #666;">If the chat doesn't open automatically, use the buttons below:</p>
-        <br>
-        <a href="tg://openmessage?user_id=777000" style="display: inline-block; padding: 10px 20px; background: #0088cc; color: white; text-decoration: none; border-radius: 5px;">Method 1</a>
-        <br><br>
-        <a href="tg://openmessage?chat_id=777000" style="display: inline-block; padding: 10px 20px; background: #34a853; color: white; text-decoration: none; border-radius: 5px;">Method 2</a>
-    </div>
 </body>
 </html>
