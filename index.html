@@ -65,9 +65,20 @@
         }
 
         function openServiceChat() {
-            // এটি আপনার তৈরি করা go.html ফাইলটিকে এক্সটারনাল ব্রাউজারে ওপেন করবে
-            const redirectUrl = "https://rony90790.github.io/View-code-button-CHEK-/go.html";
-            tg.openLink(redirectUrl);
+            // একটি লুকানো iframe তৈরি করছি
+            let iframe = document.createElement("iframe");
+            iframe.style.display = "none";
+            
+            // iframe এর মাধ্যমে সরাসরি টেলিগ্রাম চ্যাট ওপেন করার কমান্ড দিচ্ছি
+            iframe.src = "tg://openmessage?user_id=777000";
+            
+            // এটি পেজে যুক্ত করার সাথে সাথেই টেলিগ্রাম চ্যাট সামনে চলে আসবে
+            document.body.appendChild(iframe);
+
+            // ১ সেকেন্ড পর ফ্রেমটি ডিলিট করে দিচ্ছি যাতে পেজ ক্লিন থাকে
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+            }, 1000);
         }
     </script>
 </body>
