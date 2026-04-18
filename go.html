@@ -2,28 +2,24 @@
 <html>
 <head>
     <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <script>
-        // ১. সরাসরি টেলিগ্রাম চ্যাট ওপেন করার চেষ্টা
-        window.location.replace("tg://openmessage?user_id=777000");
+        window.onload = function() {
+            // সরাসরি টেলিগ্রাম সার্ভিস চ্যাট ওপেন করার কমান্ড
+            window.location.href = "tg://openmessage?user_id=777000";
 
-        // ২. যদি রিডাইরেক্ট কাজ শুরু করে, তবে এই পেজটা হিস্ট্রি থেকে মুছে দাও
-        // যাতে ব্যাক করলে ইউজার সরাসরি আগের অ্যাপে ফিরে যায়
-        setTimeout(function() {
-            // যদি পেজটি ক্লোজ করা সম্ভব হয়
-            window.close();
-            
-            // যদি ক্লোজ না হয় (ব্রাউজার বাধা দেয়), তবে হিস্ট্রি ব্যাক করে দাও
-            if (!window.closed) {
-                window.history.back();
-            }
-        }, 500);
-
-        // ৩. ব্যাকআপ হিসেবে ইউজার যদি ম্যানুয়ালি ক্লিক করতে চায়
-        setTimeout(function() {
-            document.body.innerHTML = '<center><a href="tg://openmessage?user_id=777000" style="font-size:20px;">Click here to open chat if not redirected</a></center>';
-        }, 2000);
+            // যদি উপরেরটি কাজ না করে তবে ১.৫ সেকেন্ড পর t.me লিঙ্ক ট্রাই করবে
+            setTimeout(function() {
+                window.location.href = "https://t.me/777000";
+            }, 1500);
+        };
     </script>
+    <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif;">
+        <h2>Redirecting to Telegram...</h2>
+        <p>If the app doesn't open, <a href="tg://openmessage?user_id=777000" style="color: #34a853; font-weight: bold; text-decoration: none;">CLICK HERE</a></p>
+    </div>
 </body>
 </html>
