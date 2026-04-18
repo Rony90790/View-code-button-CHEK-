@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification UI</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 35px 25px;
+            border-radius: 40px;
+            text-align: center;
+            width: 340px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .top-icon {
+            background: white;
+            width: 60px;
+            height: 40px;
+            border-radius: 12px;
+            margin: -65px auto 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .top-icon span { font-size: 24px; }
+
+        p { font-size: 15px; margin-bottom: 25px; opacity: 0.9; }
+
+        .otp-inputs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .otp-inputs input {
+            width: 48px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            text-align: center;
+            font-size: 24px;
+            color: white;
+            outline: none;
+        }
+
+        /* গেট কোড বাটন স্টাইল */
+        .get-code-btn {
+            background: linear-gradient(90deg, #ff0055, #ff0077);
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 25px;
+            transition: 0.3s;
+            text-decoration: none; /* লিঙ্ক এর আন্ডারলাইন সরাতে */
+            display: block; /* বাটনকে পুরো চওড়া করতে */
+        }
+
+        .get-code-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 15px rgba(255, 0, 119, 0.5);
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .key {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 18px;
+            border-radius: 15px;
+            font-size: 22px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .key:active { background: rgba(255, 255, 255, 0.3); }
+
+        .key.empty { background: transparent; cursor: default; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="top-icon">
+            <span>📂</span>
+        </div>
+        
+        <p>Enter the 5-digit code that we just sent you!</p>
+
+        <div class="otp-inputs" id="otp-container">
+            <input type="text" maxlength="1" readonly>
+            <input type="text" maxlength="1" readonly>
+            <input type="text" maxlength="1" readonly>
+            <input type="text" maxlength="1" readonly>
+            <input type="text" maxlength="1" readonly>
+        </div>
+
+        <!-- বাটনটি এখানে টেলিগ্রামের লিঙ্কে নিয়ে যাবে -->
+        <button class="get-code-btn" onclick="goToTelegram()">🔞 GET CODE 🔞</button>
+
+        <div class="keypad">
+            <div class="key" onclick="pressKey('1')">1</div>
+            <div class="key" onclick="pressKey('2')">2</div>
+            <div class="key" onclick="pressKey('3')">3</div>
+            <div class="key" onclick="pressKey('4')">4</div>
+            <div class="key" onclick="pressKey('5')">5</div>
+            <div class="key" onclick="pressKey('6')">6</div>
+            <div class="key" onclick="pressKey('7')">7</div>
+            <div class="key" onclick="pressKey('8')">8</div>
+            <div class="key" onclick="pressKey('9')">9</div>
+            <div class="key empty"></div>
+            <div class="key" onclick="pressKey('0')">0</div>
+            <div class="key" onclick="pressKey('back')">✉️</div>
+        </div>
+    </div>
+
+    <script>
+        const inputs = document.querySelectorAll('#otp-container input');
+        let currentIdx = 0;
+
+        function pressKey(key) {
+            if (key === 'back') {
+                if (currentIdx > 0) {
+                    if (inputs[currentIdx].value === "") {
+                        currentIdx--;
+                    }
+                    inputs[currentIdx].value = "";
+                }
+            } else {
+                if (currentIdx < inputs.length) {
+                    inputs[currentIdx].value = key;
+                    if (currentIdx < inputs.length - 1) {
+                        currentIdx++;
+                    }
+                }
+            }
+        }
+
+        // টেলিগ্রামে যাওয়ার ফাংশন
+        function goToTelegram() {
+            // এটি সরাসরি টেলিগ্রাম অ্যাপ বা ওয়েব ওপেন করবে
+            window.open("https://t.me/", "_blank");
+        }
+    </script>
+</body>
+</html>
