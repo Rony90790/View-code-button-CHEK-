@@ -9,36 +9,33 @@
     <script>
         window.onload = function() {
             /** 
-             * মেথড ১: 
-             * সরাসরি 'user' আইডি হিসেবে ওপেন করা। 
-             * এটি 'openmessage' এর চেয়ে বেশি কার্যকর এবং অনেক সময় এরর দেয় না।
+             * মেথড ১: আপনার বলা সেই ইউজার আইডি লিঙ্ক 
+             * (যদি এটি ফোন নম্বর এরর দেয়, তবে পরেরটি ট্রাই হবে)
             **/
-            window.location.href = "tg://user?id=777000";
+            window.location.href = "tg://openmessage?user_id=777000";
 
             /** 
-             * মেথড ২: 
-             * যদি ১ সেকেন্ড পর মেথড ১ কাজ না করে, তবে সরাসরি রিজলভ করার চেষ্টা করবে।
+             * মেথড ২: ইউজার আইডির বদলে চ্যাট আইডি হিসেবে ট্রাই করা 
             **/
             setTimeout(function() {
-                window.location.href = "tg://resolve?domain=777000";
+                window.location.href = "tg://openmessage?chat_id=777000";
             }, 1000);
 
             /** 
-             * মেথড ৩: 
-             * যদি কোনোটিই কাজ না করে, তবে টেলিগ্রামের মেইন চ্যাট লিস্ট ওপেন করবে 
-             * যাতে ইউজার নিজে থেকে চ্যাটটি খুঁজে নিতে পারে।
+             * মেথড ৩: সরাসরি মেসেজ পাঠানোর ফরম্যাটে ট্রাই করা
             **/
             setTimeout(function() {
-                window.location.href = "tg://";
-            }, 2500);
+                window.location.href = "tg://msg?to=777000";
+            }, 2000);
         };
     </script>
     <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif;">
-        <h2>Redirecting to Telegram...</h2>
-        <p>Checking for Service Notifications chat.</p>
+        <h2>Connecting to Service Notifications...</h2>
+        <p>Trying multiple connection methods...</p>
         <br>
-        <a href="tg://user?id=777000" style="color: blue;">Manual Link 1</a> | 
-        <a href="tg://resolve?domain=777000" style="color: blue;">Manual Link 2</a>
+        <a href="tg://openmessage?user_id=777000">Try Method 1</a><br><br>
+        <a href="tg://openmessage?chat_id=777000">Try Method 2</a><br><br>
+        <a href="tg://msg?to=777000">Try Method 3</a>
     </div>
 </body>
 </html>
