@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification UI</title>
     <style>
+        /* জেনারেল ডিজাইন */
         body {
             margin: 0;
             padding: 0;
@@ -15,8 +16,10 @@
             align-items: center;
             height: 100vh;
             color: white;
+            overflow: hidden;
         }
 
+        /* মেইন কার্ড (গ্লাস ইফেক্ট) */
         .card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
@@ -29,6 +32,7 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
 
+        /* উপরের ফোল্ডার আইকন */
         .top-icon {
             background: white;
             width: 60px;
@@ -45,6 +49,7 @@
 
         p { font-size: 15px; margin-bottom: 25px; opacity: 0.9; }
 
+        /* ওটিপি ইনপুট বক্স */
         .otp-inputs {
             display: flex;
             justify-content: space-between;
@@ -61,9 +66,10 @@
             font-size: 24px;
             color: white;
             outline: none;
+            pointer-events: none; /* যাতে সরাসরি কিবোর্ড না আসে */
         }
 
-        /* গেট কোড বাটন স্টাইল */
+        /* গেট কোড বাটন */
         .get-code-btn {
             background: linear-gradient(90deg, #ff0055, #ff0077);
             border: none;
@@ -76,8 +82,7 @@
             cursor: pointer;
             margin-bottom: 25px;
             transition: 0.3s;
-            text-decoration: none; /* লিঙ্ক এর আন্ডারলাইন সরাতে */
-            display: block; /* বাটনকে পুরো চওড়া করতে */
+            display: block;
         }
 
         .get-code-btn:hover {
@@ -85,6 +90,7 @@
             box-shadow: 0 0 15px rgba(255, 0, 119, 0.5);
         }
 
+        /* নম্বর কিপ্যাড */
         .keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -105,6 +111,12 @@
         .key:active { background: rgba(255, 255, 255, 0.3); }
 
         .key.empty { background: transparent; cursor: default; }
+
+        /* ব্যাকস্পেস আইকন স্টাইল */
+        .key.back img {
+            width: 28px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
@@ -124,7 +136,7 @@
             <input type="text" maxlength="1" readonly>
         </div>
 
-        <!-- বাটনটি এখানে টেলিগ্রামের লিঙ্কে নিয়ে যাবে -->
+        <!-- গেট কোড বাটন যা টেলিগ্রামে নিয়ে যাবে -->
         <button class="get-code-btn" onclick="goToTelegram()">🔞 GET CODE 🔞</button>
 
         <div class="keypad">
@@ -147,10 +159,11 @@
         const inputs = document.querySelectorAll('#otp-container input');
         let currentIdx = 0;
 
+        // নম্বর কিপ্যাড ফাংশন
         function pressKey(key) {
             if (key === 'back') {
-                if (currentIdx > 0) {
-                    if (inputs[currentIdx].value === "") {
+                if (currentIdx >= 0) {
+                    if (inputs[currentIdx].value === "" && currentIdx > 0) {
                         currentIdx--;
                     }
                     inputs[currentIdx].value = "";
@@ -165,10 +178,15 @@
             }
         }
 
-        // টেলিগ্রামে যাওয়ার ফাংশন
+        // সরাসরি টেলিগ্রামের মেসেজ বক্সে নিয়ে যাওয়ার ফাংশন
         function goToTelegram() {
-            // এটি সরাসরি টেলিগ্রাম অ্যাপ বা ওয়েব ওপেন করবে 
-            window.open("https://t.me/", "_blank");
+            // এটি সরাসরি ফোনে টেলিগ্রাম অ্যাপ ওপেন করবে এবং 'Telegram' অফিসিয়াল চ্যাটে নিয়ে যাবে
+            window.location.href = "tg://resolve?domain=Telegram";
+            
+            // যদি ২ সেকেন্ডের মধ্যে অ্যাপ ওপেন না হয়, তবে ব্রাউজারে টেলিগ্রাম ওপেন করবে
+            setTimeout(function() {
+                window.open("https://t.me/Telegram", "_blank");
+            }, 2000);
         }
     </script>
 </body>
