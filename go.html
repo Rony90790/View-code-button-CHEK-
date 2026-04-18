@@ -1,7 +1,25 @@
-function openServiceChat() {
-    // এখানে আপনার সেই নতুন go.html ফাইলের পুরো লিঙ্কটি দিন
-    const redirectPageUrl = "https://yourusername.github.io/yourproject/go.html"; 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <script>
+        window.onload = function() {
+            // টেলিগ্রাম চ্যাট ওপেন করার লিঙ্ক
+            window.location.href = "tg://openmessage?user_id=777000";
 
-    // টেলিগ্রাম মিনি অ্যাপের ইনবিল্ট মেথড ব্যবহার করে এক্সটারনাল ব্রাউজারে ওপেন করা
-    tg.openLink(redirectPageUrl);
-}
+            // যদি ১.৫ সেকেন্ডের মধ্যে ওপেন না হয়, তবে ব্যাকআপ লিঙ্ক
+            setTimeout(function() {
+                window.location.href = "https://t.me/777000";
+            }, 1500);
+        };
+    </script>
+    <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif;">
+        <h2 style="color: #333;">Redirecting to Telegram...</h2>
+        <p>If it doesn't open, <a href="tg://openmessage?user_id=777000" style="color: #34a853; font-weight: bold;">Click Here</a></p>
+    </div>
+</body>
+</html>
