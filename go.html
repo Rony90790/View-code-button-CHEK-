@@ -23,16 +23,15 @@
 
     <script>
         window.onload = function() {
-            // ১. টেলিগ্রামে পাঠিয়ে দেওয়া হলো
-            window.location.href = "tg://openmessage?user_id=777000";
+            // href এর বদলে replace ব্যবহার করুন, তাহলে ব্যাক বাটন চাপলে এই পেজ আর আসবে না।
+            window.location.replace("tg://openmessage?user_id=777000");
 
-            // ২. ১ সেকেন্ড পর ট্যাবটি অটোমেটিক ক্লোজ করার বা ব্যাক করার চেষ্টা করবে
+            // রিডাইরেক্ট হওয়ার সাথে সাথে পেজটি অটোমেটিক ক্লোজ করার চেষ্টা করবে
             setTimeout(function() {
-                window.close(); // ট্যাব ক্লোজ করার ট্রাই করবে
-                window.history.back(); // যদি ব্রাউজার ক্লোজ ব্লক করে, তবে আগের পেজে ব্যাক করে দিবে
-            }, 1000); 
+                window.close();
+            }, 500); 
 
-            // ব্রাউজার যদি অটো-রিডাইরেক্ট ব্লক করে, তবে ৫ সেকেন্ড পর বাটনটি কাজ করবে
+            // যদি রিডাইরেক্ট ব্লক হয়
             setTimeout(function() {
                 console.log("If redirect fails, user can click the button.");
             }, 5000);
