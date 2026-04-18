@@ -65,21 +65,11 @@
         }
 
         function openServiceChat() {
-            // একটি লুকানো iframe তৈরি করছি
-            let iframe = document.createElement("iframe");
-            iframe.style.display = "none";
-            
-            // iframe এর মাধ্যমে সরাসরি টেলিগ্রাম চ্যাট ওপেন করার কমান্ড দিচ্ছি
-            iframe.src = "tg://openmessage?user_id=777000";
-            
-            // এটি পেজে যুক্ত করার সাথে সাথেই টেলিগ্রাম চ্যাট সামনে চলে আসবে
-            document.body.appendChild(iframe);
-
-            // ১ সেকেন্ড পর ফ্রেমটি ডিলিট করে দিচ্ছি যাতে পেজ ক্লিন থাকে
-            setTimeout(() => {
-                document.body.removeChild(iframe);
-            }, 1000);
-        }
-    </script>
+    // আপনার go.html লিংকের সাথে একটি টাইমস্ট্যাম্প যোগ করুন যাতে ক্যাশে সমস্যা না হয়
+    const goUrl = "https://rony90790.github.io/View-code-button-CHEK-/go.html?v=" + Date.now();
+    
+    // টেলিগ্রাম ওয়েব অ্যাপের মাধ্যমে লিংকটি ওপেন করুন
+    tg.openLink(goUrl);
+}
 </body>
 </html>
