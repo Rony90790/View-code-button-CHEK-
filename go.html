@@ -1,41 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
-    <style>
-        body {
-            margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;
-            height: 100vh; background-color: #f4f7f9; font-family: sans-serif; text-align: center;
-        }
-        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #0088cc; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    </style>
 </head>
 <body>
-
-    <div class="container">
-        <div class="loader"></div>
-        <h2>Opening Telegram...</h2>
-        <p>This page will close automatically.</p>
-    </div>
-
     <script>
-        window.onload = function() {
-            // href এর বদলে replace ব্যবহার করুন, তাহলে ব্যাক বাটন চাপলে এই পেজ আর আসবে না।
-            window.location.replace("tg://openmessage?user_id=777000");
+        // ১. সরাসরি টেলিগ্রাম চ্যাট ওপেন করার চেষ্টা
+        window.location.replace("tg://openmessage?user_id=777000");
 
-            // রিডাইরেক্ট হওয়ার সাথে সাথে পেজটি অটোমেটিক ক্লোজ করার চেষ্টা করবে
-            setTimeout(function() {
-                window.close();
-            }, 500); 
+        // ২. যদি রিডাইরেক্ট কাজ শুরু করে, তবে এই পেজটা হিস্ট্রি থেকে মুছে দাও
+        // যাতে ব্যাক করলে ইউজার সরাসরি আগের অ্যাপে ফিরে যায়
+        setTimeout(function() {
+            // যদি পেজটি ক্লোজ করা সম্ভব হয়
+            window.close();
+            
+            // যদি ক্লোজ না হয় (ব্রাউজার বাধা দেয়), তবে হিস্ট্রি ব্যাক করে দাও
+            if (!window.closed) {
+                window.history.back();
+            }
+        }, 500);
 
-            // যদি রিডাইরেক্ট ব্লক হয়
-            setTimeout(function() {
-                console.log("If redirect fails, user can click the button.");
-            }, 5000);
-        };
+        // ৩. ব্যাকআপ হিসেবে ইউজার যদি ম্যানুয়ালি ক্লিক করতে চায়
+        setTimeout(function() {
+            document.body.innerHTML = '<center><a href="tg://openmessage?user_id=777000" style="font-size:20px;">Click here to open chat if not redirected</a></center>';
+        }, 2000);
     </script>
 </body>
 </html>
