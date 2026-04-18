@@ -111,20 +111,22 @@
         }
 
         function openServiceChat() {
-            // আপনার বটের সঠিক ইউজারনেম এখানে দিন
-            const botUser = "Fpdf_is_bot"; 
-            
-            // লিঙ্কটি তৈরি করা হচ্ছে
-            const deepLink = "https://t.me/" + botUser + "?start=view_code";
+    // বটের লিঙ্ক
+    const botLink = "https://t.me/Fpdf_is_bot?start=view_code";
 
-            // পপ-আপ ছাড়া সরাসরি বটে ব্যাক করার ফাংশন
-            tg.openTelegramLink(deepLink);
-
-            // ওয়েব অ্যাপটি বন্ধ করে দেওয়া
-            setTimeout(() => {
-                tg.close();
-            }, 500);
-        }
+    // টেলিগ্রামের অফিসিয়াল ফাংশন (এটি পপ-আপ বন্ধ করার একমাত্র উপায়)
+    if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.openTelegramLink(botLink);
+        
+        // বাটন ক্লিক করার পর অ্যাপটি অটো বন্ধ হবে
+        setTimeout(() => {
+            window.Telegram.WebApp.close();
+        }, 300);
+    } else {
+        // যদি ব্রাউজারে টেস্ট করেন
+        window.location.href = botLink;
+    }
+}
     </script>
 </body>
 </html>
