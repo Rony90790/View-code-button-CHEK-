@@ -6,67 +6,35 @@
     <title>Redirecting...</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f7f9;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
+            margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;
+            height: 100vh; background-color: #f4f7f9; font-family: sans-serif; text-align: center;
         }
-        .container {
-            text-align: center;
-            padding: 20px;
-        }
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #0088cc;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        h2 { margin: 10px 0; font-size: 20px; }
-        p { color: #666; font-size: 14px; }
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background-color: #0088cc;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-        }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #0088cc; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="loader"></div>
-        <h2>Connecting to Telegram...</h2>
-        <p>Please wait while we open your Service Notifications.</p>
-        
-        <!-- যদি অটোমেটিক না হয় তবে ইউজার এখানে ক্লিক করতে পারবে -->
-        <a href="tg://openmessage?user_id=777000" class="btn">Open Chat Manually</a>
+        <h2>Opening Telegram...</h2>
+        <p>This page will close automatically.</p>
     </div>
 
     <script>
         window.onload = function() {
-            // আপনার সফল হওয়া সেই ১ নম্বর মেথড
+            // ১. ইউজারকে টেলিগ্রাম চ্যাটে পাঠানো
             window.location.href = "tg://openmessage?user_id=777000";
 
-            // ব্রাউজার যদি অটো-রিডাইরেক্ট ব্লক করে, তবে ৫ সেকেন্ড পর বাটনটি হাইলাইট হবে
+            // ২. ৩ সেকেন্ড পর এই ট্যাবটি ক্লোজ করার চেষ্টা করবে
             setTimeout(function() {
-                console.log("If redirect fails, user can click the button.");
-            }, 5000);
+                // ট্যাব ক্লোজ করার কমান্ড
+                window.close(); 
+                
+                // কিছু ব্রাউজারের জন্য বিকল্প ক্লোজ মেথড
+                window.open('', '_self', ''); 
+                window.close();
+            }, 3000); // ৩০০০ মিলি-সেকেন্ড = ৩ সেকেন্ড
         };
     </script>
 </body>
