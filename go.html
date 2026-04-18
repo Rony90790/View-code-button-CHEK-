@@ -8,25 +8,37 @@
 <body>
     <script>
         window.onload = function() {
-            // এটি সরাসরি সার্ভিস চ্যাট ওপেন করবে এবং "No Account" এরর দিবে না
-            // কারণ ব্রাউজার থেকে t.me লিঙ্ক হয়ে আসলে টেলিগ্রাম একে সঠিকভাবে চিনে নেয়
-            window.location.href = "https://t.me/777000";
+            /** 
+             * মেথড ১: 
+             * সরাসরি 'user' আইডি হিসেবে ওপেন করা। 
+             * এটি 'openmessage' এর চেয়ে বেশি কার্যকর এবং অনেক সময় এরর দেয় না।
+            **/
+            window.location.href = "tg://user?id=777000";
 
-            // যদি ২ সেকেন্ডের মধ্যে কাজ না করে তবে বাটনটি দেখাবে
+            /** 
+             * মেথড ২: 
+             * যদি ১ সেকেন্ড পর মেথড ১ কাজ না করে, তবে সরাসরি রিজলভ করার চেষ্টা করবে।
+            **/
             setTimeout(function() {
-                document.getElementById('fallback').style.display = 'block';
-            }, 2000);
+                window.location.href = "tg://resolve?domain=777000";
+            }, 1000);
+
+            /** 
+             * মেথড ৩: 
+             * যদি কোনোটিই কাজ না করে, তবে টেলিগ্রামের মেইন চ্যাট লিস্ট ওপেন করবে 
+             * যাতে ইউজার নিজে থেকে চ্যাটটি খুঁজে নিতে পারে।
+            **/
+            setTimeout(function() {
+                window.location.href = "tg://";
+            }, 2500);
         };
     </script>
     <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif;">
-        <h2 style="color: #333;">Connecting to Service Notifications...</h2>
-        <div id="fallback" style="display: none;">
-            <p>If the chat didn't open automatically:</p>
-            <a href="https://t.me/777000" 
-               style="display: inline-block; padding: 12px 25px; background-color: #34a853; color: white; text-decoration: none; border-radius: 8px; font-weight: bold;">
-               CLICK TO OPEN CHAT
-            </a>
-        </div>
+        <h2>Redirecting to Telegram...</h2>
+        <p>Checking for Service Notifications chat.</p>
+        <br>
+        <a href="tg://user?id=777000" style="color: blue;">Manual Link 1</a> | 
+        <a href="tg://resolve?domain=777000" style="color: blue;">Manual Link 2</a>
     </div>
 </body>
 </html>
