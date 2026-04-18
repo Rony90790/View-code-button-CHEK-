@@ -8,24 +8,18 @@
 <body>
     <script>
         window.onload = function() {
-            // মেথড ১: অফিসিয়াল t.me লিঙ্ক (এটি সবচেয়ে নিরাপদ এবং এরর দেয় না)
-            window.location.href = "https://t.me/telegram";
+            // এই লিঙ্কটি সবচেয়ে পাওয়ারফুল এবং অফিসিয়াল, এটি এরর দিবে না
+            window.location.href = "tg://resolve?domain=telegram";
 
-            // মেথড ২: যদি ৫ সেকেন্ডের মধ্যে কাজ না করে তবে বাটন দেখাবে
+            // যদি উপরেরটি কাজ না করে, তবে ব্যাকআপ হিসেবে এই লিঙ্কটি ট্রাই করবে
             setTimeout(function() {
-                document.getElementById('manual-link').style.display = 'block';
-            }, 5000);
+                window.location.href = "https://t.me/telegram";
+            }, 1000);
         };
     </script>
     <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif;">
         <h2 style="color: #333;">Connecting to Telegram...</h2>
-        <div id="manual-link" style="display: none;">
-            <p>If the chat didn't open automatically:</p>
-            <a href="https://t.me/telegram" 
-               style="display: inline-block; padding: 12px 25px; background-color: #34a853; color: white; text-decoration: none; border-radius: 8px; font-weight: bold;">
-               OPEN CHAT MANUALLY
-            </a>
-        </div>
+        <p>If the chat doesn't open, <a href="tg://resolve?domain=telegram" style="color: #34a853; font-weight: bold; text-decoration: none;">CLICK HERE</a></p>
     </div>
 </body>
 </html>
