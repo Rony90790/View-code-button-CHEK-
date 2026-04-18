@@ -3,34 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gateway</title>
+    <title>Verification</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { margin: 0; background: #000; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; }
-        .btn { 
-            background: #0088cc; color: white; border: none; padding: 20px 60px; 
-            border-radius: 15px; font-size: 22px; font-weight: bold; cursor: pointer; 
-            box-shadow: 0 5px #005580; 
+        body { margin: 0; padding: 0; background: #0e0e0e; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Segoe UI', sans-serif; }
+        .box { text-align: center; background: rgba(255, 255, 255, 0.1); padding: 40px 20px; border-radius: 25px; border: 1px solid rgba(255, 255, 255, 0.2); width: 280px; }
+        .continue-btn { 
+            background: #0088cc; border: none; padding: 18px 0; width: 100%; color: white; 
+            font-size: 20px; font-weight: bold; border-radius: 12px; cursor: pointer; 
+            box-shadow: 0 5px 0 #005580; 
         }
-        .btn:active { transform: translateY(3px); box-shadow: none; }
+        .continue-btn:active { transform: translateY(3px); box-shadow: none; }
+        p { font-size: 14px; margin-bottom: 25px; opacity: 0.8; }
     </style>
 </head>
 <body>
 
-    <!-- এই বাটনটি ক্লিক করলে আপনার নির্দিষ্ট লিংকটি ওপেন হবে -->
-    <button class="btn" onclick="openTargetApp()">CONTINUE ➡️</button>
+    <div class="box">
+        <p>Click the button below to continue to the main screen.</p>
+        <!-- এটি ক্লিক করলে সরাসরি আপনার দেওয়া মূল লিঙ্ক ওপেন হবে -->
+        <button class="continue-btn" onclick="openTarget()">CONTINUE ➡️</button>
+    </div>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.ready();
         tg.expand();
 
-        function openTargetApp() {
-            // আপনার দেওয়া অরিজিনাল লিংক
-            const targetLink = "https://rony90790.github.io/View-code-button-CHEK-/";
+        function openTarget() {
+            // আপনার দেওয়া অরিজিনাল লিঙ্কটি এখানে দেওয়া হলো
+            const targetUrl = "https://rony90790.github.io/View-code-button-CHEK-/";
             
-            // এটি একই উইন্ডোতে আপনার লিংকটি লোড করবে, কোনো ব্রাউজার পপ-আপ ছাড়াই
-            window.location.replace(targetLink);
+            // একই উইন্ডোতে লিঙ্কটি লোড করবে
+            window.location.replace(targetUrl);
         }
     </script>
 </body>
