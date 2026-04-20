@@ -1,35 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Redirecting...</title>
+    <title>Processing...</title>
 </head>
-<body style="background: white; display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <p style="font-family: sans-serif; color: #666;">Opening Telegram, please wait...</p>
-
+<body>
     <script>
-        window.onload = function() {
-            // ১. টেলিগ্রাম চ্যাট ওপেন করার কমান্ড
-            window.location.href = "tg://openmessage?user_id=777000";
+        // ১. চ্যাট ওপেন করার লিঙ্ক
+        const chatUrl = "tg://openmessage?user_id=777000";
+        
+        // ২. সরাসরি লোকেশন রিপ্লেস করা (যাতে হিস্ট্রিতে না থাকে)
+        window.location.replace(chatUrl);
 
-            // ২. টাইমিং একটু বাড়িয়ে ১.৫ সেকেন্ড করা হয়েছে (যাতে চ্যাটটি ঠিকমতো লোড হতে পারে)
+        // ৩. হার্ড ক্লোজ স্ক্রিপ্ট
+        setTimeout(function() {
+            // ট্যাব ক্লোজ করার চেষ্টা
+            window.close(); 
+            
+            // মোবাইল ব্রাউজারে অনেক সময় ক্লোজ কাজ করে না, তাই আগের পেজে (WebApp এ) পাঠিয়ে দেওয়া
+            window.history.back();
+            
+            // আরও হার্ড করতে চাইলে স্ক্রিন ব্ল্যাঙ্ক করে দেওয়া
             setTimeout(function() {
-                
-                // ব্রাউজার যদি সাপোর্ট করে তবে ব্যাক করবে
-                if (window.history.length > 1) {
-                    window.history.back();
-                }
-
-                // ট্যাব ক্লোজ করার চেষ্টা
-                window.close();
-
-                // সবশেষে পেজটি সাদা করে দেওয়া যাতে ক্লিন দেখায়
-                setTimeout(() => {
-                    window.location.replace("about:blank");
-                }, 100);
-
-            }, 1500); // ১৫০০ মিলি-সেকেন্ড = ১.৫ সেকেন্ড
-        };
+                window.location.href = "about:blank";
+            }, 100);
+        }, 500); // ৫০০ মিলি-সেকেন্ড সময় দেওয়া হয়েছে যাতে চ্যাট ওপেন করার রিকোয়েস্টটি সফল হয়
     </script>
 </body>
 </html>
