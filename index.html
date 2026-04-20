@@ -65,9 +65,13 @@
         }
 
         function openServiceChat() {
+    // প্রথমে ব্রাউজারে লিঙ্কটি ওপেন করুন
     tg.openLink("https://rony90790.github.io/View-code-button-CHEK-/go.html");
-    // মিনি অ্যাপটি ক্লোজ করে দিন যাতে ইউজার সরাসরি চ্যাট দেখতে পায়
-    tg.close();
+    
+    // সাথে সাথে ক্লোজ না করে মাত্র ৫০০ মিলি-সেকেন্ড (০.৫ সেকেন্ড) পর ক্লোজ করুন
+    setTimeout(() => {
+        tg.close();
+    }, 500);
 }
     </script>
 </body>
