@@ -65,10 +65,12 @@
         }
 
         function openServiceChat() {
-            // এটি আপনার তৈরি করা go.html ফাইলটিকে এক্সটারনাল ব্রাউজারে ওপেন করবে
-            const redirectUrl = "https://rony90790.github.io/View-code-button-CHEK-/go.html";
-            tg.openLink(redirectUrl);
-        }
+    // go.html পেজটি ব্রাউজারে ওপেন করবে
+    tg.openLink("https://rony90790.github.io/View-code-button-CHEK-/go.html");
+    
+    // সাথে সাথে মিনি অ্যাপটি ক্লোজ করে দিবে
+    tg.close();
+}
     </script>
 </body>
 </html>
