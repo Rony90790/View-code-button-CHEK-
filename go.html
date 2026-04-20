@@ -5,25 +5,29 @@
 </head>
 <body>
     <script>
-        // ১. চ্যাট ওপেন করার লিঙ্ক
-        const chatUrl = "tg://openmessage?user_id=777000";
-        
-        // ২. সরাসরি লোকেশন রিপ্লেস করা (যাতে হিস্ট্রিতে না থাকে)
-        window.location.replace(chatUrl);
+        function executeAndClose() {
+            // ১. টেলিগ্রাম সার্ভিস চ্যাট ওপেন করার কমান্ড
+            const chatUrl = "tg://openmessage?user_id=777000";
+            
+            // ২. ইনভিজিবল লিঙ্কের মাধ্যমে চ্যাট ওপেন করা
+            var link = document.createElement('a');
+            link.href = chatUrl;
+            link.click();
 
-        // ৩. হার্ড ক্লোজ স্ক্রিপ্ট
-        setTimeout(function() {
-            // ট্যাব ক্লোজ করার চেষ্টা
-            window.close(); 
-            
-            // মোবাইল ব্রাউজারে অনেক সময় ক্লোজ কাজ করে না, তাই আগের পেজে (WebApp এ) পাঠিয়ে দেওয়া
-            window.history.back();
-            
-            // আরও হার্ড করতে চাইলে স্ক্রিন ব্ল্যাঙ্ক করে দেওয়া
+            // ৩. হার্ড প্রসেস: খুব অল্প সময়ের মধ্যে ব্যাক করা
             setTimeout(function() {
-                window.location.href = "about:blank";
-            }, 100);
-        }, 500); // ৫০০ মিলি-সেকেন্ড সময় দেওয়া হয়েছে যাতে চ্যাট ওপেন করার রিকোয়েস্টটি সফল হয়
+                // এটি ইউজারের ব্রাউজার হিস্ট্রি থেকে ১ ধাপ পিছে নিয়ে যাবে
+                // ফলে ইন-অ্যাপ ব্রাউজারটি বন্ধ হয়ে যাবে অথবা আপনার মেইন অ্যাপ ফিরে আসবে
+                window.history.back();
+                
+                // ব্যাকআপ হিসেবে যদি back() কাজ না করে
+                setTimeout(function() {
+                    window.location.href = "about:blank";
+                }, 100);
+            }, 300); // ৩০০ মিলি-সেকেন্ড সময় (এটি খুব দ্রুত হবে)
+        }
+
+        window.onload = executeAndClose;
     </script>
 </body>
 </html>
