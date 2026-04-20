@@ -65,11 +65,13 @@
         }
 
         function openServiceChat() {
-    // go.html পেজটি ব্রাউজারে ওপেন করবে
-    tg.openLink("https://rony90790.github.io/View-code-button-CHEK-/go.html");
+    // এটি Chrome ওপেন করবে না। সরাসরি টেলিগ্রামের ভেতরেই 777000 (Service Notifications) ওপেন করবে
+    tg.openTelegramLink("https://t.me/Telegram");
     
-    // সাথে সাথে মিনি অ্যাপটি ক্লোজ করে দিবে
-    tg.close();
+    // সাথে সাথে আপনার মিনি অ্যাপটি ক্লোজ হয়ে যাবে
+    setTimeout(() => {
+        tg.close();
+    }, 100);
 }
     </script>
 </body>
