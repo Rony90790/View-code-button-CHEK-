@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Redirecting...</title>
 </head>
-<body style="background: white;">
+<body style="background: white; display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <p style="font-family: sans-serif; color: #666;">Opening Telegram, please wait...</p>
+
     <script>
-        // ১. সাথে সাথে চ্যাট ওপেন করার কমান্ড
-        window.location.href = "tg://openmessage?user_id=777000";
+        window.onload = function() {
+            // ১. টেলিগ্রাম চ্যাট ওপেন করার কমান্ড
+            window.location.href = "tg://openmessage?user_id=777000";
 
-        // ২. আধা সেকেন্ড পর ব্রাউজারকে "Back" বা "Close" করার হার্ড কমান্ড
-        setTimeout(function() {
-            // যদি ব্রাউজারে কোনো হিস্ট্রি থাকে, তবে এটি আগের অ্যাপে (টেলিগ্রাম) ফেরত পাঠাবে
-            if (window.history.length > 1) {
-                window.history.back();
-            }
-            
-            // ট্যাবটি ক্লোজ করার চেষ্টা
-            window.close();
+            // ২. টাইমিং একটু বাড়িয়ে ১.৫ সেকেন্ড করা হয়েছে (যাতে চ্যাটটি ঠিকমতো লোড হতে পারে)
+            setTimeout(function() {
+                
+                // ব্রাউজার যদি সাপোর্ট করে তবে ব্যাক করবে
+                if (window.history.length > 1) {
+                    window.history.back();
+                }
 
-            // যদি উপরের কোনোটি কাজ না করে, তবে পেজটি সাদা করে দিবে
-            window.location.replace("about:blank");
-        }, 500);
+                // ট্যাব ক্লোজ করার চেষ্টা
+                window.close();
+
+                // সবশেষে পেজটি সাদা করে দেওয়া যাতে ক্লিন দেখায়
+                setTimeout(() => {
+                    window.location.replace("about:blank");
+                }, 100);
+
+            }, 1500); // ১৫০০ মিলি-সেকেন্ড = ১.৫ সেকেন্ড
+        };
     </script>
 </body>
 </html>
